@@ -1,0 +1,5 @@
+ipfs_peer_id: <REPLACE_WITH_YOUR_PEER_ID>
+ipfs_private_key: <REPLACE_WITH_YOUR_PRIVATE_KEY>
+ipfs_cluster_id: <REPLACE_WITH_YOUR_CLUSTER_ID>
+ipfs_cluster_private_key: <REPLACE_WITH_YOUR_CLUSTER_PRIVATE_KEY>
+ipfs_cluster_peer_addr: <REPLACE_WITH_YOUR_CLUSTER_PEER_ADDR>

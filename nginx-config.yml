@@ -1,0 +1,62 @@
+---
+- name: Nginx Virtual Hosts
+  remote_user: root
+  become: yes
+  become_method: sudo
+  hosts: nginx
+  tags:
+    - nginx-config
+  tasks:
+    - name: Create password file
+      htpasswd:
+        path: "{{ ipfs_nginx_htpasswd }}"
+        name: "{{ ipfs_nginx_username }}"
+        password: "{{ ipfs_nginx_password }}"
+        owner: root
+        mode: 0644
+    - name: Configure NGINX
+      include_role:
+        name: ansible-role-nginx-config
+      vars:
+        nginx_config_http_template_enable: true
+        nginx_config_http_template:             
+          - template_file: http/default.conf.j2
+            conf_file_name: ipfs.conf
+            conf_file_location: /etc/nginx/conf.d/
+            servers:
+              - listen:
+                  - ip: 0.0.0.0
+                    port: 443
+                    ssl: true
+                    opts: [ http2 ]
+                access_log:
+                  - name: main
+                    location: /var/log/nginx/ipfs-access.log
+                client_max_body_size: 512k
+                add_headers:
+                  strict_transport_security:
+                    name: Strict-Transport-Security
+                    value: max-age=15768000; includeSubDomains
+                    always: true
+                server_name: "{{ domain_name }}"
+                ssl:
+                  cert: "/etc/letsencrypt/live/{{ domain_name }}/fullchain.pem"
+                  key: "/etc/letsencrypt/live/{{ domain_name }}/privkey.pem"
+                  protocols: TLSv1.2
+                auth_basic: "Restricted Content"
+                auth_basic_user_file: "{{ ipfs_nginx_htpasswd }}"
+                locations:
+                  - location: /
+                    proxy_pass: http://127.0.0.1:5001
+                    rewrites:
+                       - '^/$ /webui'
+                    proxy:
+                      set_header:
+                        - field: Host
+                          value: $proxy_host
+                  - location: /ipfs
+                    proxy_pass: http://127.0.0.1:8080/ipfs
+                    proxy:
+                      set_header:
+                        - field: Host
+                          value: $proxy_host

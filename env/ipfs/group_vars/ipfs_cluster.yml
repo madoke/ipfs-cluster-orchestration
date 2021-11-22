@@ -1,0 +1,11 @@
+ipfs_cluster_secret: <REPLACE_WITH_YOUR_CLUSTER_SECRET>
+ipfs_cluster_arch: amd64
+ipfs_cluster_version: v0.13.3
+ipfs_cluster_fd_max: 10000
+ipfs_cluster_restapi_users:
+  - username: <REPLACE_WITH_YOUR_USERNAME>
+    password: <REPLACE_WITH_YOUR_PASSWORD>
+ipfs_cluster_restapi_http_listen_multiaddress: /ip4/0.0.0.0/tcp/8443
+ipfs_cluster_restapi_ssl_cert_file: "/etc/letsencrypt/live/{{ domain_name }}/fullchain.pem"
+ipfs_cluster_restapi_ssl_key_file: "/etc/letsencrypt/live/{{ domain_name }}/privkey.pem"
+ipfs_cluster_restapi_http_log_file: '/var/log/ipfs/ipfs-cluster-restapi.logm'

@@ -1,0 +1,6 @@
+---
+
+- import_playbook: certbot.yml
+- import_playbook: ipfs-cluster.yml
+- import_playbook: nginx.yml
+- import_playbook: nginx-config.yml

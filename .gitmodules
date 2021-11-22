@@ -1,0 +1,13 @@
+[submodule "roles/ansible-role-nginx"]
+	path = roles/ansible-role-nginx
+	url = git@github.com:nginxinc/ansible-role-nginx.git
+[submodule "roles/ansible-role-nginx-config"]
+	path = roles/ansible-role-nginx-config
+	url = https://github.com/nginxinc/ansible-role-nginx-config.git
+[submodule "roles/geerlingguy.certbot"]
+	path = roles/geerlingguy.certbot
+	url = git@github.com:geerlingguy/ansible-role-certbot.git
+[submodule "roles/ansible-ipfs-cluster"]
+	path = roles/ansible-ipfs-cluster
+	url = git@github.com:madoke/ansible-ipfs-cluster.git
+	branch = feature/convert-to-ansible-role

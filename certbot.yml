@@ -1,0 +1,42 @@
+---
+- name: Certbot
+  remote_user: root
+  become: yes
+  become_method: sudo
+  hosts: ipfs
+  tags:
+    - certbot
+
+  vars:
+    certbot_admin_email: <REPLACE_WITH_YOUR_EMAIL>
+    certbot_create_if_missing: true
+    certbot_auto_renew_options: "--deploy-hook 'systemctl restart nginx && systemctl restart ipfs-cluster'"
+    certbot_create_standalone_stop_services: [nginx, ipfs-cluster]
+    certbot_certs:
+      - domains:
+          - "{{ domain_name }}"
+
+  pre_tasks:
+    - name: Install dependencies (RedHat).
+      yum:
+        name:
+          - cronie
+          - epel-release
+        state: present
+      when: ansible_os_family == 'RedHat'
+
+  post_tasks:
+    - name: "Allow ipfs user to access /etc/letsencrypt/live/{{ domain_name }}/*"
+      file:
+        path: '/etc/letsencrypt/{{ item.folder }}'
+        state: directory
+        recurse: yes
+        owner: 'ipfs'
+        group: 'ipfs'
+        mode: '0755'
+      loop:
+        - { folder: "live/{{ domain_name }}" }
+        - { folder: "archive/{{ domain_name }}" }
+        
+  roles:
+    - geerlingguy.certbot

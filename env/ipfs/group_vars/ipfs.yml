@@ -1,0 +1,36 @@
+ipfs_version: v0.9.0
+ipfs_arch: amd64
+ipfs_home: /home/ipfs
+ipfs_storage_max: 10G
+ipfs_bloom_filter_size: 1048576 # 1MB
+ipfs_api_listen: /ip4/127.0.0.1/tcp/5001
+ipfs_fd_max: 4092
+ipfs_use_badger: false
+ipfs_discovery: false
+ipfs_disk_sync: true
+ipfs_routing: dht
+ipfs_disable_bandthwidth_metrics: false
+ipfs_reprovider_strategy: all
+ipfs_peering_nodes:
+  - id: "QmcfgsJsMtx6qJb74akCw1M24X1zFwgGo11h1cuhwQjtJP"
+    addrs:
+      - "/ip6/2606:4700:60::6/tcp/4009"
+      - "/ip4/172.65.0.13/tcp/4009"
+  - id: "QmWaik1eJcGHq1ybTWe7sezRfqKNcDRNkeBaLnGwQJz1Cj"
+    addrs:
+      - "/dnsaddr/fra1-1.hostnodes.pinata.cloud"
+  - id: "QmNfpLrQQZr5Ns9FAJKpyzgnDL2GgC6xBug1yUZozKFgu4"
+    addrs:
+      - "/dnsaddr/fra1-2.hostnodes.pinata.cloud"
+  - id: "QmPo1ygpngghu5it8u4Mr3ym6SEU2Wp2wA66Z91Y1S1g29"
+    addrs:
+      - "/dnsaddr/fra1-3.hostnodes.pinata.cloud"
+  - id: "QmRjLSisUCHVpFa5ELVvX3qVPfdxajxWJEHs9kN3EcxAW6"
+    addrs:
+      - "/dnsaddr/nyc-1.hostnodes.pinata.cloud"
+  - id: "QmPySsdmbczdZYBpbi2oq2WMJ8ErbfxtkG8Mo192UHkfGP"
+    addrs: 
+      - "/dnsaddr/nyc-2.hostnodes.pinata.cloud"
+  - id: "QmSarArpxemsPESa6FNkmuu9iSE1QWqPX2R3Aw6f5jq4D5	"
+    addrs:
+      - "/dnsaddr/nyc1-3.hostnodes.pinata.cloud"

@@ -1,0 +1,11 @@
+---
+- name: IPFS Cluster
+  remote_user: root
+  become: yes
+  become_method: sudo
+  hosts: ipfs
+  tags:
+    - ipfs
+    - ipfs-cluster
+  roles:
+    - ansible-ipfs-cluster
